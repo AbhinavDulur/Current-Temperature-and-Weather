@@ -1,0 +1,16 @@
+zipcode = input('Please enter your 6 digit zip code ')
+
+
+
+quote_page = 'https://weather.com/weather/today/l/'+zipcode+':4:US'
+
+import bs4
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+page = urlopen(quote_page)
+
+soup = BeautifulSoup(page, 'html.parser')
+
+name_box = soup.find('div', attrs={'class':'today_nowcard-section today_nowcard-condition'})
+name = name_box.text.strip()
+print (name)
